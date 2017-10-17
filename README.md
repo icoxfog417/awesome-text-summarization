@@ -123,7 +123,8 @@ The following paper is good starting point to overview the LSA(Topic) base summa
 
 [Text summarization using Latent Semantic Analysis](https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis)
 
-![topic_base.png](./images/topic_base.png)
+![topic_base.png](./images/topic_base.png)  
+*The simple LSA base sentence selection*
 
 There are many variations the way to calculate & select the sentence according to the SVD value. To select the sentence by the topic(=V, eigenvectors/principal axes) and its score is most simple method.
 
@@ -148,8 +149,8 @@ Extractive & Abstractive is not conflicting ways. You can use both to generate t
 
 The end-to-end approach tries to learn the process to convert the input document to the summary directly. The encoder-decoder model is most simple but powerful model, that from machine translation. The encoder encodes the input document, and decoder generates the summary from the encoded representation.
 
-![encoder_decoder.png](./images/encoder_decoder.png)
-[Computer, respond to this email](https://research.googleblog.com/2015/11/computer-respond-to-this-email.html)
+![encoder_decoder.png](./images/encoder_decoder.png)  
+*[Computer, respond to this email](https://research.googleblog.com/2015/11/computer-respond-to-this-email.html)*
 
 If you want to try the encoder-decoder summarization model, tensorflow offers basic model.
 
@@ -168,6 +169,11 @@ ROUGE-1 and ROUGE-2 is usually used. The ROUGE-1 means word base, so its order i
 BLEU is a modified form of "precision", that used in machine translation evaluation usually. BLEU is basically calculated on the n-gram co-occerance between the generated summary and the gold (You don't need to specify the "n" unlike ROUGE). 
 
 ## Datasets
+
+* [DUC 2004](http://www.cis.upenn.edu/~nlp/corpora/sumrepo.html)
+* [Opinosis Dataset - Topic related review sentences](http://kavita-ganesan.com/opinosis-opinion-dataset)
+* [17 Timelines](http://www.l3s.de/~gtran/timeline/)
+* [Legal Case Reports Data Set](http://archive.ics.uci.edu/ml/datasets/Legal+Case+Reports)
 
 
 ## Implementation
