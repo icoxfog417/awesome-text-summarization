@@ -72,12 +72,12 @@ class JASetting(LangSetting):
 
     def __init__(self):
         super().__init__("ja")
+        from janome.tokenizer import Tokenizer
+        self.tokenizer = Tokenizer()
+        self._symbol_replace = re.compile("[^ぁ-んァ-ン一-龥ーa-zA-Zａ-ｚＡ-Ｚ0-9０-９]")
 
     def tokenize(self, text):
-        from janome.tokenizer import Tokenizer
-        tokenizer = Tokenizer()
-        _txt = text.replace("。", " 。 ")
-        _txt = _txt.replace("、", " 、 ")
-        words = [t.surface for t in tokenizer.tokenize(_txt)]
+        _txt = self._symbol_replace.sub(" ", text)
+        words = [t.surface for t in self.tokenizer.tokenize(_txt)]
         words = [w.strip() for w in words if w.strip()]
         return words
