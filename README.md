@@ -2,6 +2,18 @@
 
 The guide to tackle with the Text Summarization. 
 
+* Motivation
+* Task Definition
+* Basic Approach
+  * Extractive
+  * Abstractive
+* Evaluation
+* Resources
+  * Datasets
+  * Libraries
+  * Articles
+  * Papers
+
 ## Motivation
 
 To take the appropriate action, we need latest information.  
@@ -19,50 +31,49 @@ So to make an automatically & accurate summaries feature will helps us to **unde
 
 ## Task Definition
 
-Summarization is the function that takes some documents and outputs the summary.
+Basically, we can regard the "summarization" as the "function" its input is document and output is summary. And its input & output type helps us to categorize the multiple summarization tasks.
 
 * Single document summarization
   * *summary = summarize(document)*
 * Multi-document summarization
   * *summary = summarize(document_1, document_2, ...)*
-  * Sometimes user provides the multiple documents by query
 
-This basic task is so-called "Generic summarization". It produces the summary for everybody. In contrast, to specify the topic or some keywords is called "Query focused summarization". 
+We can take the query to add the viewpoint of summarization.
 
 * Query focused summarization
   * *summary = summarize(document, query)*
 
-As like our minutes of the meeting, there is a scene that we want to focus on the difference between the previous time and this time. It is called "Update summarization".
+This type of summarization is called "Query focused summarization" on the contrary to the "Generic summarization". Especially, a type that set the viewpoint to the "difference" (update) is called "Update summarization".
 
 * Update summarization
   * *summary = summarize(document, previous_document_or_summary)*
 
-The "summary" itself has some variety.
+And the *"summary"* itself has some variety.
 
 * Indicative summary
-  * It likes a summary of the book. It describes what kinds of the story, but not tell all of the story especially its ends (so indicative summary has only partial information).
+  * It looks like a summary of the book. This summary describes what kinds of the story, but not tell all of the stories especially its ends (so indicative summary has only partial information).
 * Informative summary
-  * The summary that summarizes fully information of the document.
+  * In contrast to the indicative summary, the informative summary includes full information of the document.
 * Keyword summary
-  * A set of indicative words or phrases mentioned in the input document.
+  * Not the text, but the words or phrases from the input document.
 * Headline summary
   * Only one line summary.
 
 
 **Discussion**
 
-`Generic summarization` is really useful? Sparck Jones argued that summarization should not be done in a vacuum, but rather done according to the purpose of summarization ([2]). She argued that generic summarization is not necessary and in fact, wrong-headed. On the other hand, the headlines and 3-line summaries in the newspaper helps us.
+`Generic summarization` is really useful? Sparck Jones argued that summarization should not be done in a vacuum, but rather done according to the purpose of summarization ([2](https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf)). She argued that generic summarization is not necessary and in fact, wrong-headed. On the other hand, the headlines and 3-line summaries in the newspaper helps us.
 
 
-## Approach
+## Basic Approach
 
-There are mainly two ways. Extractive and Abstractive.
+There are mainly two ways to make the summary. Extractive and Abstractive.
 
 ### Extractive
 
 * Select relevant phrases of the input document and concatenate them to form a summary (like "copy-and-paste").
-* Pros: They are quite robust since they use existing natural-language phrases that are taken straight from the input.
-* Cons: But they lack in flexibility since they cannot use novel words or connectors. They also cannot paraphrase like people sometimes do.
+  * Pros: They are quite robust since they use existing natural-language phrases that are taken straight from the input.
+  * Cons: But they lack in flexibility since they cannot use novel words or connectors. They also cannot paraphrase like people sometimes do.
 
 Now I show the some categories of extractive summarization.
 
@@ -139,8 +150,8 @@ If you want to use LSA, gensim supports it.
 ### Abstractive 
 
 * Generate a summary that keeps original intent. It's just like humans do.
-* Pros: They can use words that were not in the original input. It enables to make more fluent and natural summaries.
-* Cons: But it is also a much harder problem as you now require the model to generate coherent phrases and connectors.
+  * Pros: They can use words that were not in the original input. It enables to make more fluent and natural summaries.
+  * Cons: But it is also a much harder problem as you now require the model to generate coherent phrases and connectors.
 
 Extractive & Abstractive is not conflicting ways. You can use both to generate the summary. And there are a way collaborate with human.
 
@@ -172,7 +183,9 @@ ROUGE-1 and ROUGE-2 is usually used. The ROUGE-1 means word base, so its order i
 
 BLEU is a modified form of "precision", that used in machine translation evaluation usually. BLEU is basically calculated on the n-gram co-occerance between the generated summary and the gold (You don't need to specify the "n" unlike ROUGE). 
 
-## Datasets
+## Resources
+
+### Datasets
 
 * [DUC 2004](http://www.cis.upenn.edu/~nlp/corpora/sumrepo.html)
 * [Opinosis Dataset - Topic related review sentences](http://kavita-ganesan.com/opinosis-opinion-dataset)
@@ -180,20 +193,37 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 * [Legal Case Reports Data Set](http://archive.ics.uci.edu/ml/datasets/Legal+Case+Reports)
 * [Annotated English Gigaword](https://catalog.ldc.upenn.edu/LDC2012T21)
 
-## Implementation
+### Libraries
 
 * [TensorFlow summarization](https://github.com/tensorflow/models/tree/master/research/textsum)
-  * Dataset: [Annotated English Gigaword](https://catalog.ldc.upenn.edu/LDC2012T21)
 * [gensim](https://radimrehurek.com/gensim/summarization/summariser.html)
   * `gensim.summarization` offers TextRank summarization
 
-## References
+### Articles
 
 * Wikipedia
   * [Automatic summarization](https://en.wikipedia.org/wiki/Automatic_summarization)
 * Blogs
   * [Text summarization with TensorFlow](https://research.googleblog.com/2016/08/text-summarization-with-tensorflow.html)
   * [Your tl;dr by an ai: a deep reinforced model for abstractive summarization](https://einstein.ai/research/your-tldr-by-an-ai-a-deep-reinforced-model-for-abstractive-summarization)
-* Papers
-  1. A. Nenkova and K. McKeown,  "[Automatic summarization](https://www.cis.upenn.edu/~nenkova/1500000015-Nenkova.pdf),". Foundations and Trends in Information Retrieval, 5(2-3):103–233, 2011.
-  2. K. Sparck Jones, “[Automatic summarizing: factors and directions](https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf),”. Advances in Automatic Text Summarization, pp. 1–12, MIT Press, 1998.
+
+### Papers
+
+#### Overview
+
+1. A. Nenkova and K. McKeown,  "[Automatic summarization](https://www.cis.upenn.edu/~nenkova/1500000015-Nenkova.pdf),". Foundations and Trends in Information Retrieval, 5(2-3):103–233, 2011.
+2. K. Sparck Jones, “[Automatic summarizing: factors and directions](https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf),”. Advances in Automatic Text Summarization, pp. 1–12, MIT Press, 1998.
+
+#### Extractive Summarization
+
+1. R. Mihalcea and P. Tarau, "[Textrank: Bringing order into texts](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf),". In Proceedings of the 2004 Conference on Empirical Methods in Natural Language Processing, 2004. 
+2. G. Erkan and D. R. Radev, "[LexRank: graph-based lexical centrality as salience in text summarization](https://www.aaai.org/Papers/JAIR/Vol22/JAIR-2214.pdf),". Journal of Artificial Intelligence Research, v.22 n.1, p.457-479, July 2004.
+3. J. Jagadeesh, P. Pingali and V. Varma, "[Sentence Extraction Based Single Document Summarization](http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97)", Workshop on Document Summarization, 19th and 20th March, 2005.
+4. P.H. Luhn. "[Automatic creation of literature abstracts](http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf),". IBM Journal, pages 159-165, 1958.
+5. M. G. Ozsoy, F. N. Alpaslan and I. Cicekli, "[Text summarization using Latent Semantic Analysis](https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis)", Proceedings of the 23rd International Conference on Computational Linguistics, vol. 37, pp. 405-417, aug 2011.
+
+#### Abstractive Summarization
+
+comming soon.
+
+
