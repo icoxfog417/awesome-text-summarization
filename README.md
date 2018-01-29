@@ -145,9 +145,9 @@ Extractive & Abstractive is not conflicting ways. You can use both to generate t
   * Computer suggests important information from the document, and the human decide to use it or not. It uses information retrieval, and text mining way.
 
 
-#### End-to-End Model
+#### Encoder-Decoder Model
 
-The end-to-end approach tries to learn the process to convert the input document to the summary directly. The encoder-decoder model is most simple but powerful model, that from machine translation. The encoder encodes the input document, and decoder generates the summary from the encoded representation.
+The encoder-decoder model is most simple but powerful model, that from machine translation. The encoder encodes the input document, and decoder generates the summary from the encoded representation.
 
 ![encoder_decoder.png](./images/encoder_decoder.png)  
 *[Computer, respond to this email](https://research.googleblog.com/2015/11/computer-respond-to-this-email.html)*
@@ -174,7 +174,7 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 * [Opinosis Dataset - Topic related review sentences](http://kavita-ganesan.com/opinosis-opinion-dataset)
 * [17 Timelines](http://www.l3s.de/~gtran/timeline/)
 * [Legal Case Reports Data Set](http://archive.ics.uci.edu/ml/datasets/Legal+Case+Reports)
-
+* [Annotated English Gigaword](https://catalog.ldc.upenn.edu/LDC2012T21)
 
 ## Implementation
 
@@ -192,4 +192,4 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
   * [Your tl;dr by an ai: a deep reinforced model for abstractive summarization](https://einstein.ai/research/your-tldr-by-an-ai-a-deep-reinforced-model-for-abstractive-summarization)
 * Papers
   1. A. Nenkova and K. McKeown,  "[Automatic summarization](https://www.cis.upenn.edu/~nenkova/1500000015-Nenkova.pdf),". Foundations and Trends in Information Retrieval, 5(2-3):103–233, 2011.
-  2. K. Sparck Jones, “[Automatic summarizing: factors and directions](),”. Advances in Automatic Text Summarization, pp. 1–12, MIT Press, 1998.
+  2. K. Sparck Jones, “[Automatic summarizing: factors and directions](https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf),”. Advances in Automatic Text Summarization, pp. 1–12, MIT Press, 1998.
