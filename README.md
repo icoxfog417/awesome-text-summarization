@@ -4,11 +4,15 @@ The guide to tackle with the Text Summarization.
 
 ## Motivation
 
-We want to catch up up-to-date information to take a suitable action. But on the contrary, the amount of the information is more and more growing. There are many categories of information (economy, sports, health, technology...) and also there are many sources (news site, blog, SNS...).
+To take the appropriate action, we need latest information.  
+But on the contrary, the amount of the information is more and more growing. There are many categories of information (economy, sports, health, technology...) and also there are many sources (news site, blog, SNS...).
 
-![growth_of_data](./images/growth_of_data.PNG)
-
-*from [THE HISTORICAL GROWTH OF DATA: WHY WE NEED A FASTER TRANSFER SOLUTION FOR LARGE DATA SETS](https://www.signiant.com/articles/file-transfer/the-historical-growth-of-data-why-we-need-a-faster-transfer-solution-for-large-data-sets/)*
+<p align="center">
+  <img src="./images/growth_of_data.PNG" alt="growth_of_data" width="450"/>
+  <p><i>
+    from <a href="https://www.signiant.com/articles/file-transfer/the-historical-growth-of-data-why-we-need-a-faster-transfer-solution-for-large-data-sets/" target="_blank">THE HISTORICAL GROWTH OF DATA: WHY WE NEED A FASTER TRANSFER SOLUTION FOR LARGE DATA SETS</a>
+  </i></p>
+</p>
 
 So to make an automatically & accurate summaries feature will helps us to **understand** the topics and **shorten the time** to do it.
 
