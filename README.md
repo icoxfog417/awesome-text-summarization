@@ -3,16 +3,16 @@
 The guide to tackle with the Text Summarization. 
 
 * [Motivation](#motivation)
-* Task Definition
-* Basic Approach
-  * Extractive
-  * Abstractive
-* Evaluation
-* Resources
-  * Datasets
-  * Libraries
-  * Articles
-  * Papers
+* [Task Definition](#task-definition)
+* [Basic Approach](#basic-approach)
+  * [Extractive](#extractive)
+  * [Abstractive](#abstractive)
+* [Evaluation](#evaluation)
+* [Resources](#resources)
+  * [Datasets](#datasets)
+  * [Libraries](#libraries)
+  * [Articles](#articles)
+  * [Papers](#papers)
 
 ## Motivation
 
@@ -159,7 +159,6 @@ Extractive & Abstractive is not conflicting ways. You can use both to generate t
   * Combines automatic methods with human input.
   * Computer suggests important information from the document, and the human decide to use it or not. It uses information retrieval, and text mining way.
 
-
 #### Encoder-Decoder Model
 
 The encoder-decoder model is most simple but powerful model, that from machine translation. The encoder encodes the input document, and decoder generates the summary from the encoded representation.
@@ -170,6 +169,7 @@ The encoder-decoder model is most simple but powerful model, that from machine t
 If you want to try the encoder-decoder summarization model, tensorflow offers basic model.
 
 * [Text summarization with TensorFlow](https://research.googleblog.com/2016/08/text-summarization-with-tensorflow.html)
+
 
 ## Evaluation
 
@@ -195,9 +195,15 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 
 ### Libraries
 
+* [gensim](https://radimrehurek.com/gensim/index.html)
+  * [`gensim.summarization`](https://radimrehurek.com/gensim/summarization/summariser.html) offers TextRank summarization
+  * [`gensim models.lsimodel`](https://radimrehurek.com/gensim/models/lsimodel.html) offers topic model
+* [pytextrank](https://github.com/ceteri/pytextrank)
+* [TextTeaser](https://github.com/MojoJolo/textteaser) 
+  * [PyTeaser](https://github.com/xiaoxu193/PyTeaser) for Python user
 * [TensorFlow summarization](https://github.com/tensorflow/models/tree/master/research/textsum)
-* [gensim](https://radimrehurek.com/gensim/summarization/summariser.html)
-  * `gensim.summarization` offers TextRank summarization
+* [sumeval](https://github.com/chakki-works/sumeval)
+  * Calculate ROUGE and BLEU score
 
 ### Articles
 
@@ -211,19 +217,21 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 
 #### Overview
 
-1. A. Nenkova and K. McKeown,  "[Automatic summarization](https://www.cis.upenn.edu/~nenkova/1500000015-Nenkova.pdf),". Foundations and Trends in Information Retrieval, 5(2-3):103–233, 2011.
+1. A. Nenkova, and K. McKeown,  "[Automatic summarization](https://www.cis.upenn.edu/~nenkova/1500000015-Nenkova.pdf),". Foundations and Trends in Information Retrieval, 5(2-3):103–233, 2011.
 2. K. Sparck Jones, “[Automatic summarizing: factors and directions](https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf),”. Advances in Automatic Text Summarization, pp. 1–12, MIT Press, 1998.
 
 #### Extractive Summarization
 
-1. R. Mihalcea and P. Tarau, "[Textrank: Bringing order into texts](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf),". In Proceedings of the 2004 Conference on Empirical Methods in Natural Language Processing, 2004. 
-2. G. Erkan and D. R. Radev, "[LexRank: graph-based lexical centrality as salience in text summarization](https://www.aaai.org/Papers/JAIR/Vol22/JAIR-2214.pdf),". Journal of Artificial Intelligence Research, v.22 n.1, p.457-479, July 2004.
-3. J. Jagadeesh, P. Pingali and V. Varma, "[Sentence Extraction Based Single Document Summarization](http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97)", Workshop on Document Summarization, 19th and 20th March, 2005.
-4. P.H. Luhn. "[Automatic creation of literature abstracts](http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf),". IBM Journal, pages 159-165, 1958.
-5. M. G. Ozsoy, F. N. Alpaslan and I. Cicekli, "[Text summarization using Latent Semantic Analysis](https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis)", Proceedings of the 23rd International Conference on Computational Linguistics, vol. 37, pp. 405-417, aug 2011.
+1. R. Mihalcea, and P. Tarau, "[Textrank: Bringing order into texts](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf),". In Proceedings of the 2004 Conference on Empirical Methods in Natural Language Processing, 2004. 
+2. G. Erkan, and D. R. Radev, "[LexRank: graph-based lexical centrality as salience in text summarization](https://www.aaai.org/Papers/JAIR/Vol22/JAIR-2214.pdf),". Journal of Artificial Intelligence Research, v.22 n.1, p.457-479, July 2004.
+3. J. Jagadeesh, P. Pingali, and V. Varma, "[Sentence Extraction Based Single Document Summarization](http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97)", Workshop on Document Summarization, 19th and 20th March, 2005.
+4. P.H. Luhn, "[Automatic creation of literature abstracts](http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf),". IBM Journal, pages 159-165, 1958.
+5. M. G. Ozsoy, F. N. Alpaslan, and I. Cicekli, "[Text summarization using Latent Semantic Analysis](https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis),". Proceedings of the 23rd International Conference on Computational Linguistics, vol. 37, pp. 405-417, aug 2011.
 
 #### Abstractive Summarization
 
-comming soon.
-
-
+1. A. M. Rush, S. Chopra, and J. Weston, "[A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/abs/1509.00685),". In EMNLP, 2015.
+   * [GitHub](https://github.com/facebookarchive/NAMAS)
+2. R. Nallapati, B. Zhou, C. dos Santos, C. Gulcehre, and B. Xiang, "[Abstractive text summarization using sequence-to-sequence RNNs and beyond](https://arxiv.org/abs/1602.06023),". In Computational Natural Language Learning, 2016.
+3. A. See, P. J. Liu, and C. D. Manning, "[Get to the point: Summarization with pointergenerator networks](https://arxiv.org/abs/1704.04368),". In ACL, 2017.
+   * [GitHub](https://github.com/abisee/pointer-generator)
