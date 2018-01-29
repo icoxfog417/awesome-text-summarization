@@ -2,7 +2,7 @@
 
 The guide to tackle with the Text Summarization. 
 
-* Motivation
+* [Motivation](#motivation)
 * Task Definition
 * Basic Approach
   * Extractive
