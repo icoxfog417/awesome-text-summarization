@@ -224,6 +224,7 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
 * *How to handle the novel/rare (but important) word in source document.*
   * switch the decoder(generator) and pointer network (by `p_gen` probability).
   *  combine the distribution of vocabulary and attention with `p_gen` and (1 - `p_gen`) weight (please refer the following picture).
+* [Implementation](https://github.com/abisee/pointer-generator)
 
 <img src="./images/get_to_the_point.png" alt="get_to_the_point" width="450"/>
 
