@@ -79,7 +79,7 @@ Now I show the some categories of extractive summarization.
 
 #### Graph Base
 
-Make the graph from the document, then summarize it by considering the relation between the nodes (text-unit). `TextRank` is the typical graph based method.
+The graph base model makes the graph from the document, then summarize it by considering the relation between the nodes (text-unit). `TextRank` is the typical graph based method.
 
 **[TextRank](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf)**
 
@@ -103,7 +103,7 @@ If you want to use TextRank, following tools support TextRank.
 
 #### Feature Base
 
-Extract the features of sentence, then evaluate its importance. Here is the representative research.
+The feature base model extracts the features of sentence, then evaluate its importance. Here is the representative research.
 
 [Sentence Extraction Based Single Document Summarization](http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97)
 
@@ -131,7 +131,7 @@ You can try feature base text summarization by [TextTeaser](https://github.com/M
 
 #### Topic Base
 
-Calculate the topic of the document and evaluate each sentences by what kinds of topics are included (the "main" topic is highly evaluated when scoring the sentence).
+The topic base model calculates the topic of the document and evaluate each sentences by what kinds of topics are included (the "main" topic is highly evaluated when scoring the sentence).
 
 Latent Semantic Analysis (LSA) is usually used to detect the topic. It's based on SVD (Singular Value Decomposition).   
 The following paper is good starting point to overview the LSA(Topic) base summarization.
@@ -147,6 +147,17 @@ If you want to use LSA, gensim supports it.
 
 * [gensim models.lsimodel](https://radimrehurek.com/gensim/models/lsimodel.html)
 
+#### Grammer Base
+
+The grammer base model parses the text and constructs a grammatical structure, then select/reorder substructures.
+
+[Title Generation with Quasi-Synchronous Grammar](https://www.aclweb.org/anthology/D/D10/D10-1050.pdf)
+
+![grammer_base.png](./images/grammer_base.png)
+
+This model can produce meaningful "paraphrase" based on the grammatical structure. For example, above image shows the phrase "in the disputed territory of East Timor" is converted to "in East Timor". To analyze grammatical structure is useful to reconstruct the phrase with keeping its meaning.
+
+
 ### Abstractive 
 
 * Generate a summary that keeps original intent. It's just like humans do.
@@ -159,16 +170,75 @@ Extractive & Abstractive is not conflicting ways. You can use both to generate t
   * Combines automatic methods with human input.
   * Computer suggests important information from the document, and the human decide to use it or not. It uses information retrieval, and text mining way.
 
-#### Encoder-Decoder Model
+The beginning of the abstractive summarization, [Banko et al. (2000)](http://www.anthology.aclweb.org/P/P00/P00-1041.pdf) suggest to use machine translatation model to abstractive summarization model. As like the machine translation model converts a source language text to a target one, the summarization system converts a source document to a target summary.
 
-The encoder-decoder model is most simple but powerful model, that from machine translation. The encoder encodes the input document, and decoder generates the summary from the encoded representation.
-
-![encoder_decoder.png](./images/encoder_decoder.png)  
-*[Computer, respond to this email](https://research.googleblog.com/2015/11/computer-respond-to-this-email.html)*
+Nowadays, encoder-decoder model that is one of the neural network models is mainly used in machine translation. So this model is also widely used in abstractive summarization model. [The summarization model that used encoder-decoder model first](http://www.aclweb.org/anthology/N16-1012) achieved state-of-the-art on the two sentence-level summarization dataset, DUC-2004 and Gigaword.
 
 If you want to try the encoder-decoder summarization model, tensorflow offers basic model.
 
 * [Text summarization with TensorFlow](https://research.googleblog.com/2016/08/text-summarization-with-tensorflow.html)
+
+#### Encoder-Decoder Model
+
+The encoder-decoder model is composed of encoder and decoder like its name. The encoder converts an input document to a latent representation (vector), and the decoder generates a summary by using it.
+
+![encoder_decoder.png](./images/encoder_decoder.png)  
+* from [Computer, respond to this email](https://research.googleblog.com/2015/11/computer-respond-to-this-email.html)*
+
+But the encoder-decoder model is not the silver bullet. There are many remaining issues are there. 
+
+* How to set the focus on the important sentence, keyword.
+* How to handle the novel/rare (but important) word in source document.
+* How to handle the long document.
+* Want to make more human-readable summary.
+* Want to use large vocabulary.
+
+#### Researches based on Encoder-Decoder Model
+
+**[A Neural Attention Model for Sentence Summarization](https://aclweb.org/anthology/D15-1044)**
+
+* *How to set the focus on the important sentence, keyword.*?
+  * use Attention (sec 3.2)
+* *How to handle the novel/rare (but important) word in source document.*
+  * add n-gram match term to the loss function (sec 5)
+* Other features
+  * use 1D convolution to capture the local context
+  * use beam-search to generate summary
+* [Implementation](https://github.com/facebookarchive/NAMAS)
+
+**[Abstractive Text Summarization Using Sequence-to-Sequence RNNs and Beyond](https://arxiv.org/abs/1602.06023)**
+
+* *How to set the focus on the important sentence, keyword.*
+  * use enhanced feature such as POS, Named Entity tag, TF, IDF (sec 2.2)
+* *How to handle the novel/rare (but important) word in source document.*
+  * switch the decoder(generate word) and pointer(copy from original text). (sec 2.3)
+* *How to handle the long document.*
+  * use sentence level attention (sec 2.4)
+* *Want to use large vocabulary.*
+  * use subset of vocabulary on the training (sec 2.1, please refer [On Using Very Large Target Vocabulary for Neural Machine Translation](http://www.aclweb.org/anthology/P15-1001))
+  
+**[Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/abs/1704.04368)**
+
+* *How to set the focus on the important sentence, keyword.*
+  * use Attention (sec 2.1)
+* *How to handle the novel/rare (but important) word in source document.*
+  * switch the decoder(generator) and pointer network (by `p_gen` probability).
+  *  combine the distribution of vocabulary and attention with `p_gen` and (1 - `p_gen`) weight (please refer the following picture).
+
+<img src="./images/get_to_the_point.png" alt="get_to_the_point" width="450"/>
+
+**[A Deep Reinforced Model for Abstractive Summarization](https://arxiv.org/abs/1705.04304)**
+
+* *How to set the focus on the important sentence, keyword.*
+  * use intra-temporal attention (attention over specific parts of the encoded input sequence)
+* *Want to make more human-readable summary.*
+  * use reinforcement learning (ROUGE-optimized RL) with supervised learning.
+* Other features
+  * use intra-decoder attention (attention to decoded context) to supress the repeat of the same phrases.
+
+<img src="./images/rl_model_for_as.png" alt="rl_model_for_as" width="450"/>
+
+from [Your tldr by an ai: a deep reinforced model for abstractive summarization](https://einstein.ai/research/your-tldr-by-an-ai-a-deep-reinforced-model-for-abstractive-summarization)
 
 
 ## Evaluation
@@ -227,11 +297,16 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 3. J. Jagadeesh, P. Pingali, and V. Varma, "[Sentence Extraction Based Single Document Summarization](http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97)", Workshop on Document Summarization, 19th and 20th March, 2005.
 4. P.H. Luhn, "[Automatic creation of literature abstracts](http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf),". IBM Journal, pages 159-165, 1958.
 5. M. G. Ozsoy, F. N. Alpaslan, and I. Cicekli, "[Text summarization using Latent Semantic Analysis](https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis),". Proceedings of the 23rd International Conference on Computational Linguistics, vol. 37, pp. 405-417, aug 2011.
+6. K. Woodsend, Y. Feng, and M. Lapata, "[Title generation with quasi-synchronous grammar](https://www.aclweb.org/anthology/D/D10/D10-1050.pdf),". Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing, p.513-523, October 09-11, 2010
 
 #### Abstractive Summarization
 
-1. A. M. Rush, S. Chopra, and J. Weston, "[A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/abs/1509.00685),". In EMNLP, 2015.
+1. M. Banko, V. O. Mittal, and M. J. Witbrock, "[Headline Generation Based on Statistical Translation](http://www.anthology.aclweb.org/P/P00/P00-1041.pdf),". In Proceedings of the 38th Annual Meeting on Association for Computational Linguistics, pages 318–325. Association for Computational Linguistics, 2000. 
+2. A. M. Rush, S. Chopra, and J. Weston, "[A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/abs/1509.00685),". In EMNLP, 2015.
    * [GitHub](https://github.com/facebookarchive/NAMAS)
-2. R. Nallapati, B. Zhou, C. dos Santos, C. Gulcehre, and B. Xiang, "[Abstractive text summarization using sequence-to-sequence RNNs and beyond](https://arxiv.org/abs/1602.06023),". In Computational Natural Language Learning, 2016.
-3. A. See, P. J. Liu, and C. D. Manning, "[Get to the point: Summarization with pointergenerator networks](https://arxiv.org/abs/1704.04368),". In ACL, 2017.
+3. S. Chopra, M. Auli, and A. M. Rush, "[Abstractive sentence summarization with attentive recurrent neural networks](http://www.aclweb.org/anthology/N16-1012),". In North American Chapter of the Association for Computational Linguistics, 2016.
+4. R. Nallapati, B. Zhou, C. dos Santos, C. Gulcehre, and B. Xiang, "[Abstractive text summarization using sequence-to-sequence RNNs and beyond](https://arxiv.org/abs/1602.06023),". In Computational Natural Language Learning, 2016.
+5. S. Jean, K. Cho, R. Memisevic, and Yoshua Bengio. "[On using very large target vocabulary for neural machine translation](http://www.aclweb.org/anthology/P15-1001),". CoRR, abs/1412.2007. 2014.
+6. A. See, P. J. Liu, and C. D. Manning, "[Get to the point: Summarization with pointergenerator networks](https://arxiv.org/abs/1704.04368),". In ACL, 2017.
    * [GitHub](https://github.com/abisee/pointer-generator)
+7. R. Paulus, C. Xiong, and R. Socher, "[A deep reinforced model for abstractive summarization](https://arxiv.org/abs/1705.04304),". arXiv preprint arXiv:1705.04304, 2017.
