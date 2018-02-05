@@ -231,15 +231,27 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
 **[A Deep Reinforced Model for Abstractive Summarization](https://arxiv.org/abs/1705.04304)**
 
 * *How to set the focus on the important sentence, keyword.*
-  * use intra-temporal attention (attention over specific parts of the encoded input sequence)
+  * use intra-temporal attention (attention over specific parts of the encoded input sequence) (sec 2.1)
+* How to handle the novel/rare (but important) word in source document.
+  * use pointer network to copy input token instead of generating it. (sec 2.3)
 * *Want to make more human-readable summary.*
-  * use reinforcement learning (ROUGE-optimized RL) with supervised learning.
+  * use reinforcement learning (ROUGE-optimized RL) with supervised learning. (sec 3.2)
 * Other features
-  * use intra-decoder attention (attention to decoded context) to supress the repeat of the same phrases.
+  * use intra-decoder attention (attention to decoded context) to supress the repeat of the same phrases. (sec 2.2)
+  * constrain duplicate trigram to avoid repetition. (sec 2.5)
 
 <img src="./images/rl_model_for_as.png" alt="rl_model_for_as" width="450"/>
 
 from [Your tldr by an ai: a deep reinforced model for abstractive summarization](https://einstein.ai/research/your-tldr-by-an-ai-a-deep-reinforced-model-for-abstractive-summarization)
+
+**[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198)**
+
+* *How to set the focus on the important sentence, keyword.*
+  * use the encoder-less self-attention network (sec 4.2.3~). it concatenates input & output, and predict the next token from the previous sequence.
+* *How to handle the long document.*
+  * use the extractive model to extract tokens from long document first, then execute the abstractive model.
+
+<img src="./images/generating_wikipedia.png" alt="encoder less network" width="450"/>
 
 
 ## Evaluation
