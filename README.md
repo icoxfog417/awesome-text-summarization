@@ -228,6 +228,11 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
 
 <img src="./images/get_to_the_point.png" alt="get_to_the_point" width="450"/>
 
+It is theoretically beautiful, but you have to pay attention to its behavior.
+[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) report that a pointer-generator model heavily depends on a "copy" (pointer) at test time.  
+[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) use a penalty term for pointer/generator mixture rate to overcome this phenomenon and control the abstractive.
+
+
 **[A Deep Reinforced Model for Abstractive Summarization](https://arxiv.org/abs/1705.04304)**
 
 * *How to set the focus on the important sentence, keyword.*
@@ -322,5 +327,6 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 5. S. Jean, K. Cho, R. Memisevic, and Yoshua Bengio. "[On using very large target vocabulary for neural machine translation](http://www.aclweb.org/anthology/P15-1001),". CoRR, abs/1412.2007. 2014.
 6. A. See, P. J. Liu, and C. D. Manning, "[Get to the point: Summarization with pointergenerator networks](https://arxiv.org/abs/1704.04368),". In ACL, 2017.
    * [GitHub](https://github.com/abisee/pointer-generator)
-7. R. Paulus, C. Xiong, and R. Socher, "[A deep reinforced model for abstractive summarization](https://arxiv.org/abs/1705.04304),". arXiv preprint arXiv:1705.04304, 2017.
-8. P. J. Liu, M. Saleh, E. Pot, B. Goodrich, R. Sepassi, L. Kaiser, and N. Shazeer, "[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198),". arXiv preprint arXiv:1801.10198, 2018.
+7. N. Weber, L. Shekhar, N. Balasubramanian, K. Cho, "[]()"
+8. R. Paulus, C. Xiong, and R. Socher, "[A deep reinforced model for abstractive summarization](https://arxiv.org/abs/1705.04304),". arXiv preprint arXiv:1705.04304, 2017.
+9. P. J. Liu, M. Saleh, E. Pot, B. Goodrich, R. Sepassi, L. Kaiser, and N. Shazeer, "[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198),". arXiv preprint arXiv:1801.10198, 2018.
