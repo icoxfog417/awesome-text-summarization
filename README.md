@@ -7,6 +7,7 @@ The guide to tackle with the Text Summarization.
 * [Basic Approach](#basic-approach)
   * [Extractive](#extractive)
   * [Abstractive](#abstractive)
+* [Combination Approach](#combination-approach)
 * [Evaluation](#evaluation)
 * [Resources](#resources)
   * [Datasets](#datasets)
@@ -218,17 +219,15 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
   * use subset of vocabulary on the training (sec 2.1, please refer [On Using Very Large Target Vocabulary for Neural Machine Translation](http://www.aclweb.org/anthology/P15-1001))
 
 
-### Combination model
+## Combination Approach
 
-#### Pointer-Generator Network
+Not only one side of extractive or abstractive, combine them to generate summaries.
+
+### Pointer-Generator Network
 
 Combine the extractive and abstractive model by switching probability.
 
-It is theoretically beautiful, but you have to pay attention to its behavior.
-[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) report that a pointer-generator model heavily depends on a "copy" (pointer) at test time.  
-[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) use a penalty term for pointer/generator mixture rate to overcome this phenomenon and control the abstractive.
-
-##### Researches
+#### Researches
 
 **[Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/abs/1704.04368)**
 
@@ -258,9 +257,15 @@ It is theoretically beautiful, but you have to pay attention to its behavior.
 from [Your tldr by an ai: a deep reinforced model for abstractive summarization](https://einstein.ai/research/your-tldr-by-an-ai-a-deep-reinforced-model-for-abstractive-summarization)
 
 
-#### Extract then Abstract model
+The pointer-generator network is theoretically beautiful, but you have to pay attention to its behavior.  
+[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) report that a pointer-generator model heavily depends on a "copy" (pointer) at test time.  
+[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) use a penalty term for pointer/generator mixture rate to overcome this phenomenon and control the abstractive.
+
+### Extract then Abstract model
 
 Use extractive model to select the sentence from documents, then adopt the abstractive model to selected sentences.
+
+#### Researches
 
 **[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198)**
 
