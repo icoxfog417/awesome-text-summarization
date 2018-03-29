@@ -158,7 +158,7 @@ The grammer base model parses the text and constructs a grammatical structure, t
 This model can produce meaningful "paraphrase" based on the grammatical structure. For example, above image shows the phrase "in the disputed territory of East Timor" is converted to "in East Timor". To analyze grammatical structure is useful to reconstruct the phrase with keeping its meaning.
 
 
-### Abstractive 
+### Abstractive
 
 * Generate a summary that keeps original intent. It's just like humans do.
   * Pros: They can use words that were not in the original input. It enables to make more fluent and natural summaries.
@@ -193,7 +193,7 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
 * Want to make more human-readable summary.
 * Want to use large vocabulary.
 
-#### Researches based on Encoder-Decoder Model
+##### Researches
 
 **[A Neural Attention Model for Sentence Summarization](https://aclweb.org/anthology/D15-1044)**
 
@@ -216,7 +216,20 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
   * use sentence level attention (sec 2.4)
 * *Want to use large vocabulary.*
   * use subset of vocabulary on the training (sec 2.1, please refer [On Using Very Large Target Vocabulary for Neural Machine Translation](http://www.aclweb.org/anthology/P15-1001))
-  
+
+
+### Combination model
+
+#### Pointer-Generator Network
+
+Combine the extractive and abstractive model by switching probability.
+
+It is theoretically beautiful, but you have to pay attention to its behavior.
+[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) report that a pointer-generator model heavily depends on a "copy" (pointer) at test time.  
+[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) use a penalty term for pointer/generator mixture rate to overcome this phenomenon and control the abstractive.
+
+##### Researches
+
 **[Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/abs/1704.04368)**
 
 * *How to set the focus on the important sentence, keyword.*
@@ -227,11 +240,6 @@ But the encoder-decoder model is not the silver bullet. There are many remaining
 * [Implementation](https://github.com/abisee/pointer-generator)
 
 <img src="./images/get_to_the_point.png" alt="get_to_the_point" width="450"/>
-
-It is theoretically beautiful, but you have to pay attention to its behavior.
-[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) report that a pointer-generator model heavily depends on a "copy" (pointer) at test time.  
-[Weber et al. (2018)](https://arxiv.org/abs/1803.07038) use a penalty term for pointer/generator mixture rate to overcome this phenomenon and control the abstractive.
-
 
 **[A Deep Reinforced Model for Abstractive Summarization](https://arxiv.org/abs/1705.04304)**
 
@@ -249,6 +257,11 @@ It is theoretically beautiful, but you have to pay attention to its behavior.
 
 from [Your tldr by an ai: a deep reinforced model for abstractive summarization](https://einstein.ai/research/your-tldr-by-an-ai-a-deep-reinforced-model-for-abstractive-summarization)
 
+
+#### Extract then Abstract model
+
+Use extractive model to select the sentence from documents, then adopt the abstractive model to selected sentences.
+
 **[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198)**
 
 * *How to set the focus on the important sentence, keyword.*
@@ -256,7 +269,18 @@ from [Your tldr by an ai: a deep reinforced model for abstractive summarization]
 * *How to handle the long document.*
   * use the extractive model to extract tokens from long document first, then execute the abstractive model.
 
-<img src="./images/generating_wikipedia.png" alt="encoder less network" width="450"/>
+<img src="./images/generating_wikipedia.png" alt="generating wikipedia summarization" width="450"/>
+
+**[Query Focused Abstractive Summarization: Incorporating Query Relevance, Multi-Document Coverage, and Summary Length Constraints into seq2seq Models](https://arxiv.org/abs/1801.07704)**
+
+This model combines query focused extractive model and abstractive model. Extract sentence and calculate the relevance score of each word according to the query, then input it to pre-trained abstractive model.
+
+* *How to set the focus on the important sentence, keyword.*
+  * use attention and query relevance score
+* *How to handle the long document.*
+  * use query to extract document/sentences from multiple documents.
+
+<img src="./images/qf.PNG" alt="query focused model and abstractive model" width="450"/>
 
 
 ## Evaluation
@@ -327,6 +351,7 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 5. S. Jean, K. Cho, R. Memisevic, and Yoshua Bengio. "[On using very large target vocabulary for neural machine translation](http://www.aclweb.org/anthology/P15-1001),". CoRR, abs/1412.2007. 2014.
 6. A. See, P. J. Liu, and C. D. Manning, "[Get to the point: Summarization with pointergenerator networks](https://arxiv.org/abs/1704.04368),". In ACL, 2017.
    * [GitHub](https://github.com/abisee/pointer-generator)
-7. N. Weber, L. Shekhar, N. Balasubramanian, K. Cho, "[]()"
+7. N. Weber, L. Shekhar, N. Balasubramanian, and K. Cho, "[Controlling Decoding for More Abstractive Summaries with Copy-Based Networks](https://arxiv.org/abs/1803.07038),". arXiv preprint arXiv:1803.07038, 2018.
 8. R. Paulus, C. Xiong, and R. Socher, "[A deep reinforced model for abstractive summarization](https://arxiv.org/abs/1705.04304),". arXiv preprint arXiv:1705.04304, 2017.
 9. P. J. Liu, M. Saleh, E. Pot, B. Goodrich, R. Sepassi, L. Kaiser, and N. Shazeer, "[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198),". arXiv preprint arXiv:1801.10198, 2018.
+10. T. Baumel, M. Eyal, and M. Elhadad, "[Query Focused Abstractive Summarization: Incorporating Query Relevance, Multi-Document Coverage, and Summary Length Constraints into seq2seq Models](https://arxiv.org/abs/1801.07704),". arXiv preprint arXiv:1801.07704, 2018.
