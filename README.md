@@ -309,6 +309,10 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 * [17 Timelines](http://www.l3s.de/~gtran/timeline/)
 * [Legal Case Reports Data Set](http://archive.ics.uci.edu/ml/datasets/Legal+Case+Reports)
 * [Annotated English Gigaword](https://catalog.ldc.upenn.edu/LDC2012T21)
+* [CNN/Daily Mail dataset](https://cs.nyu.edu/~kcho/DMQA/)
+  * It is originally Q&A dataset, but its `stories` are commonly used as summarization dataset (you can download preprocessed dataset from [here](https://github.com/abisee/cnn-dailymail)).
+* [CORNELL NEWSROOM](https://summari.es/)
+  * It is one of the huge summarization dataset! This dataset contains 1.3 million articles and summaries written by authors and editors in the newsrooms of 38 major publications.
 
 ### Libraries
 
