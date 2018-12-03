@@ -130,6 +130,14 @@ Now we can evaluate each sentences. Next is selecting the sentence to avoid the 
 You can try feature base text summarization by [TextTeaser](https://github.com/MojoJolo/textteaser) ([PyTeaser](https://github.com/xiaoxu193/PyTeaser) is available for Python user).
 
 
+Of course, you can use Deep learning model to extract sentence feature. [SummaRuNNer](https://arxiv.org/abs/1611.04230) is a representative model for the extractive summarization by DNN.
+
+![summa_runner.png](./images/summa_runner.png)
+
+1. Make sentence feature (vector) by Bi-directional LSTM from word vectors (word2vec).
+2. Make document feature by Bi-directional LSTM from sentence vectors (`1`).
+3. Calculate selection probability from `1` & `2`.
+
 #### Topic Base
 
 The topic base model calculates the topic of the document and evaluate each sentences by what kinds of topics are included (the "main" topic is highly evaluated when scoring the sentence).
@@ -360,6 +368,7 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 4. P.H. Luhn, "[Automatic creation of literature abstracts](http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf),". IBM Journal, pages 159-165, 1958.
 5. M. G. Ozsoy, F. N. Alpaslan, and I. Cicekli, "[Text summarization using Latent Semantic Analysis](https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis),". Proceedings of the 23rd International Conference on Computational Linguistics, vol. 37, pp. 405-417, aug 2011.
 6. K. Woodsend, Y. Feng, and M. Lapata, "[Title generation with quasi-synchronous grammar](https://www.aclweb.org/anthology/D/D10/D10-1050.pdf),". Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing, p.513-523, October 09-11, 2010.
+7. R. Nallapati, F. Zhai and B. Zhou, "[SummaRuNNer: A Recurrent Neural Network based Sequence Model for Extractive Summarization of Documents](https://arxiv.org/abs/1611.04230),". In AAAI, 2017.
 
 #### Abstractive Summarization
 
