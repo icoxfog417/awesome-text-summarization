@@ -8,6 +8,7 @@ The guide to tackle with the Text Summarization.
   * [Extractive](#extractive)
   * [Abstractive](#abstractive)
 * [Combination Approach](#combination-approach)
+* [Transfer Learning](#transfer-learning)
 * [Evaluation](#evaluation)
 * [Resources](#resources)
   * [Datasets](#datasets)
