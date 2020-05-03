@@ -422,6 +422,7 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 4. P. J. Liu, M. Saleh, E. Pot, B. Goodrich, R. Sepassi, L. Kaiser, and N. Shazeer, "[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/abs/1801.10198),". arXiv preprint arXiv:1801.10198, 2018.
 5. T. Baumel, M. Eyal, and M. Elhadad, "[Query Focused Abstractive Summarization: Incorporating Query Relevance, Multi-Document Coverage, and Summary Length Constraints into seq2seq Models](https://arxiv.org/abs/1801.07704),". arXiv preprint arXiv:1801.07704, 2018.
 6. Y. Chen, M. Bansal, "[Fast Abstractive Summarization with Reinforce-Selected Sentence Rewriting](https://arxiv.org/abs/1805.11080),". In ACL, 2018.
+7. Isabel Cachola, Kyle Lo, Arman Cohan, Daniel S. Weld, "[TLDR: Extreme Summarization of Scientific Documents](https://arxiv.org/abs/2004.15011)"
 
 
 ## Transfer Learning
