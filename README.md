@@ -377,6 +377,7 @@ BLEU is a modified form of "precision", that used in machine translation evaluat
 * [TensorFlow summarization](https://github.com/tensorflow/models/tree/master/research/textsum)
 * [sumeval](https://github.com/chakki-works/sumeval)
   * Calculate ROUGE and BLEU score
+* [Explore text summarization Libraries on kandi](https://kandi.openweaver.com/search/libraries?q=text%20summarization) - A platform to discover & find a curated list of popular & new libraries, trending project kits, code snippets, packages, APIs, and cloud functions from over 430 million knowledge items.
 
 ### Articles
 
